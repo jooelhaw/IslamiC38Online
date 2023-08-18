@@ -1,5 +1,6 @@
 package com.route.isalmic38online.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.route.isalmic38online.Main.MainActivity
+import com.route.isalmic38online.UI.ContentActivity
 import com.route.isalmic38online.databinding.FragmentQuranBinding
 import com.route.isalmic38online.databinding.ItemSurahBinding
 
@@ -150,7 +152,11 @@ class QuranFragment : Fragment() {
         quranBinding.rvQuran.adapter = adapter
         adapter.onItemClickListener = object : QuranRecyclerAdapter.OnItemClickListener{
             override fun onClick(item: ItemSurahBinding, Position: Int) {
-                Toast.makeText(context,titles[Position][0].toString(),Toast.LENGTH_SHORT).show()
+                val intent = Intent(context,ContentActivity::class.java)
+                intent.putExtra("surah", Position+1)
+                intent.putExtra("name", titles[Position][0])
+                startActivity(intent)
+               // Toast.makeText(context,titles[Position][0],Toast.LENGTH_SHORT).show()
             }
         }
 
